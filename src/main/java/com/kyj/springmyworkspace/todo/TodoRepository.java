@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 // JpaRepository<엔티티타입, id타입>
 
 // 인터페이스는 인스턴스 생성이 안 된다.
+
 @Repository
 public interface TodoRepository extends JpaRepository<Todo, Integer> {
 

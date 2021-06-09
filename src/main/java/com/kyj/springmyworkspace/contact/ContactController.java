@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,8 @@ public class ContactController {
 
 	@GetMapping(value = "/contacts")
 	public List<Contact> getContactList() {
-		return repo.findAll();
+		// SELECT * FROM contact ORDER BY id DESC; -- 역순(descending) 정렬
+		return repo.findAll(Sort.by("id").descending());
 	}
 
 	@PostMapping(value = "/contacts")
@@ -42,7 +44,7 @@ public class ContactController {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
-		if (contact.getMail() == null || contact.getMail().equals("")) {
+		if (contact.getEmail() == null || contact.getEmail().equals("")) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
@@ -87,14 +89,14 @@ public class ContactController {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
-		if (contact.getMail() == null && contact.getMail().equals("")) {
+		if (contact.getEmail() == null && contact.getEmail().equals("")) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 			return null;
 		}
 		Contact toUpdateContact = findedContact.get();
 		toUpdateContact.setName(contact.getName());
 		toUpdateContact.setPhone(contact.getPhone());
-		toUpdateContact.setMail(contact.getMail());
+		toUpdateContact.setEmail(contact.getEmail());
 
 		return repo.save(toUpdateContact);
 	}

@@ -15,7 +15,7 @@ public class Contact {
 	private int id;
 	private String name;
 	private String phone;
-	private String mail;
+	private String email;
 	private Long createdTime;
 
 }
