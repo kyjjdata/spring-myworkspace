@@ -31,8 +31,8 @@ public class DustHourlyService {
 	@Scheduled(fixedRate = 1000 * 60 * 30) // 30분마다, 테스트용 스케줄, 프로그램이 시작될 때 한번은 바로 실행됨
 	public void requestDustHourlyData() throws IOException {
 		System.out.println(new Date().toLocaleString() + "--실행--");
-		getDustHourlyData("PM10"); // 미세
-		getDustHourlyData("PM25"); // 초미세
+//		getDustHourlyData("PM10"); // 미세
+//		getDustHourlyData("PM25"); // 초미세
 
 	}
 
