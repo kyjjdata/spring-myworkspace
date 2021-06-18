@@ -18,31 +18,29 @@ public class FoodWaste {
 	// JPA -> 합성ID : 여러개의 필드를 합쳐서 Id로 사용함
 
 	// 데이터의 중복 저장 방지용으로 id를 지정함
+	private String citySidoName;
+	@Id
+	private String citySggName;
 	@Id
 	private String disYear;
 	@Id
 	private String disMonth;
-	@Id
-	private String citySggName;
-
 	private String disDay;
 	private String disDayCount;
-	private String citySidoName;
-	private String disQuantity;
 	private String dayAverQuantity;
+	private String disQuantity;
 	private String disCount;
 	private String dayAverCount;
 
 	public FoodWaste(FoodWasteData.List1 list1) {
-
+		this.citySidoName = list1.getCitySidoName();
+		this.citySggName = list1.getCitySggName();
 		this.disYear = list1.getDisYear();
 		this.disMonth = list1.getDisMonth();
-		this.citySggName = list1.getCitySggName();
 		this.disDay = list1.getDisDay();
 		this.disDayCount = list1.getDisDayCount();
-		this.citySidoName = list1.getCitySidoName();
-		this.disQuantity = list1.getDisQuantity();
 		this.dayAverQuantity = list1.getDayAverQuantity();
+		this.disQuantity = list1.getDisQuantity();
 		this.disCount = list1.getDisCount();
 		this.dayAverCount = list1.getDayAverCount();
 

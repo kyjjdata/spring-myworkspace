@@ -28,7 +28,8 @@ public class FoodWasteService {
 	public void requestFoodWasteData() throws IOException {
 		System.out.println(new Date().toLocaleString() + "--!실행!--");
 		getFoodWasteData("W07"); // 중랑구
-		getFoodWasteData("W01"); // 중구
+		getFoodWasteData("W01"); // 종로구
+		getFoodWasteData("W02"); // 중구
 	}
 
 	// 데이터를 요청하는 함수
