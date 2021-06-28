@@ -1,11 +1,12 @@
-package com.kyj.springmyworkspace.opendata2.foodwaste;
+
+package com.kyj.springmyworkspace.opendata3.foodwastetime;
 
 import java.util.List;
 
 import lombok.Data;
 
 @Data // getter,setter
-public class FoodWasteData {
+public class FoodWasteTimeData {
 	private Data1 data;
 
 	@Data
@@ -17,15 +18,13 @@ public class FoodWasteData {
 	public class List1 {
 		private String disYear;
 		private String disMonth;
-
-		private String disDay;
-		private String disDayCount;
 		private String citySidoName;
 		private String citySggName;
 		private String disQuantity;
-		private String dayAverQuantity;
 		private String disCount;
-		private String dayAverCount;
+		private String disHour;
+		private String disQuantityRate;
+		private String disCountRate;
 
 	}
 
@@ -40,15 +39,13 @@ public class FoodWasteData {
 	public class List2 {
 		private String disYear;
 		private String disMonth;
-
-		private String disDay;
-		private String disDayCount;
 		private String citySidoName;
 		private String citySggName;
 		private String disQuantity;
-		private String dayAverQuantity;
 		private String disCount;
-		private String dayAverCount;
+		private String disHour;
+		private String disQuantityRate;
+		private String disCountRate;
 
 	}
 }

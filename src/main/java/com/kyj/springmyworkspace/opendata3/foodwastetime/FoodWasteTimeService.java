@@ -1,4 +1,4 @@
-package com.kyj.springmyworkspace.opendata2.foodwaste;
+package com.kyj.springmyworkspace.opendata3.foodwastetime;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -6,26 +6,23 @@ import java.net.URL;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 
 @Service
-public class FoodWasteService {
+public class FoodWasteTimeService {
 
-	FoodWasteRepository repo;
+	FoodWasteTimeRepository repo;
 
 	@Autowired
-	public FoodWasteService(FoodWasteRepository repo) {
+	public FoodWasteTimeService(FoodWasteTimeRepository repo) {
 		this.repo = repo;
 	}
 
 	// 스케줄 실행하는 메서드
 //	@Scheduled(cron = "0 0 9 1 * *") // 매달 1일 9시에 실행
-	// @CacheEvict : 메서드가 실행될 때 해당 캐시를 삭제함
-	@CacheEvict(cacheNames = "food-waste", key = "0")
 	@SuppressWarnings("deprecation")
 	@Scheduled(fixedRate = 1000 * 60 * 30) // 테스트용, 30분마다, 프로그램이 시작될 때 한번은 바로 실행
 	public void requestFoodWasteData() throws IOException {
@@ -68,7 +65,7 @@ public class FoodWasteService {
 		// 데이터 요청 URL을 만들어야 함
 		StringBuilder builder = new StringBuilder();
 		builder.append("http://apis.data.go.kr/B552584/RfidFoodWasteServiceNew"); // 서비스 주소
-		builder.append("/getCityDayList");// 상세기능주소
+		builder.append("/getCityTimeList");// 상세기능주소
 		builder.append("?serviceKey=" + serviceKey); // 서비스키
 		builder.append("&type=json"); // 응답데이터형식 json
 		builder.append("&disYear=2021"); // 배출년
@@ -94,12 +91,12 @@ public class FoodWasteService {
 
 		// 3. String(JSON) -> Object로 변환
 		// 구조가 있는 형식(Class로 찍어낸 Object)으로 변환해야 사용할 수 있음.
-		FoodWasteData data1 = new Gson().fromJson(data, FoodWasteData.class);
+		FoodWasteTimeData data1 = new Gson().fromJson(data, FoodWasteTimeData.class);
 		System.out.println(data1);
 
 		// 4. 응답 객체를 Entity 객체로 변환하여 저장
-		for (FoodWasteData.List1 list1 : data1.getData().getList()) {
-			repo.save(new FoodWaste(list1));
+		for (FoodWasteTimeData.List1 list1 : data1.getData().getList()) {
+			repo.save(new FoodWasteTime(list1));
 
 		}
 

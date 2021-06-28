@@ -1,8 +1,7 @@
-package com.kyj.springmyworkspace.opendata2.foodwaste;
+package com.kyj.springmyworkspace.opendata3.foodwastetime;
 
 import java.util.List;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
@@ -11,21 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FoodWasteController {
+public class FoodWasteTimeController {
 
-	private FoodWasteRepository repo;
+	private FoodWasteTimeRepository repo;
 
-	public FoodWasteController(FoodWasteRepository repo) {
+	public FoodWasteTimeController(FoodWasteTimeRepository repo) {
 		this.repo = repo;
 	}
 
-	// @Cacheable : 리턴 객체를 캐시함
-	// cacheNames: 캐시할 객체의 명칭(임의로 정함)
-	// key: 캐시할 객체의 key
-//
-	@Cacheable(cacheNames = "foodwaste", key = "0")
-	@RequestMapping(value = "/opendata/foodWaste", method = RequestMethod.GET)
-	public List<FoodWaste> getListByDataType() {
+	@RequestMapping(value = "/opendata/foodWasteTime", method = RequestMethod.GET)
+	public List<FoodWasteTime> getListByDataType() {
 		Order[] orders = { new Order(Sort.Direction.DESC, "disMonth"), new Order(Sort.Direction.ASC, "citySggName") };
 
 		// 최근 12시간 데이터만 조회
